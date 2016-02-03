@@ -28,6 +28,7 @@ if @status['active_pid'].blank?
   @status['last_run'] = Time.now.to_s
   write_status!
 else
+  # an active pid is present so another script is in progress
   puts "another script in process"
   abort
 end
@@ -88,6 +89,7 @@ begin
       sleep 5
     end
   end
+  # script is done, clear active pid and write status
   @status['active_pid'] = nil
   write_status!
 rescue StandardError => e
