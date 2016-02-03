@@ -29,7 +29,7 @@ if @status['active_pid'].blank?
   write_status!
 else
   # an active pid is present so another script is in progress
-  puts "another script in process"
+  puts "another script in progess"
   abort
 end
 
