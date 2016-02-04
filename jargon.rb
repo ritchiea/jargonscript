@@ -49,7 +49,7 @@ begin
     query.each do |search_term|
       tc.client.search(search_term, since_id: @status['last_tweet'], result_type: 'recent', count: 100, language: 'en').each do |tweet|
         # add tweet to array but skip tweets where our search term matches the screen name
-        if tweet.user.screen_name.match(/gamechanger/i) && !tweet.text.match(/gamechanger/i)
+        if tweet.user.screen_name.match(/ideation|gamechange/i) && !tweet.text.match(/ideation|gamechanger/i)
           next
         else
           tweets << tweet
