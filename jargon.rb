@@ -66,11 +66,14 @@ begin
     puts "retweeting..."
     puts tweet.inspect
     # set last tweet in JSON file if index is last tweet in array
+    must_sleep = false
     if i == tweets.length - 1
       #last tweet
       puts "writing last tweet #{tweet.id}"
       @status['last_tweet'] = tweet.id
       write_status!
+    else
+      must_sleep = true
     end
     begin
       tc.client.retweet(tweet)
@@ -86,10 +89,8 @@ begin
       puts "already retweeted"
       next
     end
-    if i < tweets.length - 1
-      # sleep again to avoid hitting rate limit
-      sleep 5
-    end
+    # sleep again to avoid hitting rate limit
+    sleep 5 if must_sleep
   end
   # script is done, clear active pid and write status
   @status['active_pid'] = nil
