@@ -13,7 +13,7 @@ def write_status!
   file.close
 end
 
-query = ['"move the needle"','"huge win for"','"think outside the box"','"value add"','"core values" OR "core competency"',
+query = ['"move the needle"','"results driven"','"think outside the box"','"value add"','"core values" OR "core competency"',
          '"open the kimono" OR "opening the kimono"','ideation -suicidal -suicide','"corporate family"','"circle back"',
          '"moving the cheese"','"architect of change"','"data lake"','disestablish','"global platform"','"ground truthing"',
          'grow "your personal brand"','"step change"','"employee life cycle"','"bleeding edge"',
@@ -93,11 +93,9 @@ begin
   @status['active_pid'] = nil
   write_status!
 rescue StandardError => e
-  puts "script failed"
-  puts e.message
-  puts e.backtrace
-  puts e.inspect
+  puts "script failed\n\n#{e.message}\n\n#{e.backtrace}\n\n#{e.inspect}"
 ensure
+  # ensure clear pid so script runs again as scheduled
   @status['active_pid'] = nil
   write_status!
 end
