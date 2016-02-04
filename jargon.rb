@@ -2,6 +2,7 @@ require 'json'
 require "/home/ar/projects/winscript/twitter_client.rb"
 
 class Object
+  # extend Object class with blank? helper method
   def blank?
     respond_to?(:empty?) ? !!empty? : !self
   end
@@ -24,6 +25,7 @@ file = File.open('status.json', 'r')
 file.close
 
 if @status['active_pid'].blank?
+  # store current pid in status file so 2 scripts are not running simultaneously
   @status['active_pid'] = Process.pid
   @status['last_run'] = Time.now.to_s
   write_status!
