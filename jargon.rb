@@ -15,10 +15,10 @@ def write_status!
 end
 
 query = ['"move the needle"','"results driven"','"think outside the box"','"value add"','"core values" OR "core competency"',
-         '"open the kimono" OR "opening the kimono"','ideation -suicidal -suicide','"corporate family"','"circle back"',
+         '"open the kimono" OR "opening the kimono"','ideation -suicidal -suicide','"corporate family"','"circle back" -"full circle"',
          '"moving the cheese"','"architect of change"','"data lake"','disestablish','"global platform"','"ground truthing"',
-         'grow "your personal brand"','"step change"','"employee life cycle"','"bleeding edge"','"thought leader"',
-         '"circle back"'].map {|txt| txt << ' -rt'}
+         'grow "your personal brand"','"step change"','"employee life cycle"','"bleeding edge"','"thought leader"'
+         ].map {|txt| txt << ' -rt'}
 
 file = File.open('status.json', 'r')
 @status = JSON.parse(file.read)
