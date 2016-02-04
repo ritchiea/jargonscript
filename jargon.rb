@@ -63,8 +63,7 @@ begin
   end
   # sort tweets by id to post oldest first
   tweets.sort{|x,y| x.id.to_i <=> y.id.to_i }.each_with_index do |tweet, i|
-    puts "retweeting..."
-    puts tweet.inspect
+    puts "retweeting...\n\n#{tweet.inspect}"
     # set last tweet in JSON file if index is last tweet in array
     must_sleep = false
     if i == tweets.length - 1
@@ -78,12 +77,10 @@ begin
     begin
       tc.client.retweet(tweet)
     rescue Twitter::Error::Unauthorized => e
-      puts "can't retweet - unauthorized"
-      puts e.message
+      puts "can't retweet - unauthorized\n\n#{e.message}"
       next
     rescue Twitter::Error::Forbidden => e
-      puts "can't retweet - forbidden"
-      puts e.message
+      puts "can't retweet - forbidden\n\n#{e.message}"
       next
     rescue Twitter::Error::AlreadyRetweeted
       puts "already retweeted"
